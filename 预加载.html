@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>预加载</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+    ul,li {
+        margin: 0;
+        padding: 0;
+    }
+    ul {
+        width: 100%;
+        height: auto;
+        border: 1px solid red;
+        zoom: 1;
+        overflow: hidden;
+    }
+    li {
+        display: block;
+        list-style: none;
+        width: 300px;
+        height: 200px;
+        border: 1px solid blue;
+        float: left;
+        margin: 5px;
+    }
+</style>
+</head>
+<body>
+    <ul id="ul">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <script type="text/javascript">
+    var Ul = document.getElementById('ul');
+    function styleCss (obj, attr) {
+        if (obj.currentStyle) {
+            return obj.currentStyle[attr];
+        } else {
+            return getComputedStyle(obj, false)[attr];
+        }
+    }
+    console.log(document.body.scrollTop);
+    console.log(parseInt(styleCss(Ul, 'height')));
+    var onoff = false;
+    window.onscroll = function () {
+        if (parseInt(styleCss(Ul, 'height')) - document.documentElement.clientHeight - document.body.scrollTop < 100) {
+            onoff = true;
+            var  creatLi = '';
+            for (var i=0; i<10; i++) {
+                creatLi += "<li></li>";
+            }
+            Ul.innerHTML += creatLi;
+            onoff != onoff;
+        }
+    };
+
+    </script>
+</body>
+</html>
